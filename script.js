@@ -1,5 +1,5 @@
-//your JS code here.
-
+// ========== ADD THESE LINES AT THE TOP ==========
+// Get references to DOM elements
 const questionsElement = document.getElementById("questions");
 const submitButton = document.getElementById("submit");
 const scoreElement = document.getElementById("score");
@@ -34,18 +34,17 @@ const questions = [
   },
 ];
 
-
+// ========== ADD THESE LINES (Session Storage Logic) ==========
 // Load saved progress from session storage
 let userAnswers = [];
 const savedProgress = sessionStorage.getItem("progress");
 if (savedProgress) {
   userAnswers = JSON.parse(savedProgress);
 } else {
+  // Initialize empty array for answers
   userAnswers = new Array(questions.length).fill(null);
 }
 
-
-// Display the quiz questions and choices
 // Display the quiz questions and choices
 function renderQuestions() {
   for (let i = 0; i < questions.length; i++) {
@@ -77,9 +76,9 @@ function renderQuestions() {
   }
 }
 
-
 renderQuestions();
 
+// ========== ADD THIS ENTIRE SECTION (Submit Handler) ==========
 // Handle quiz submission
 submitButton.addEventListener("click", function() {
   // Calculate the score
@@ -91,7 +90,7 @@ submitButton.addEventListener("click", function() {
   }
   
   // Display the score
-  scoreElement.textContent = `Your score is ${score} out of 5`;
+  scoreElement.textContent = `Your score is ${score} out of 5.`;
   
   // Save score to local storage
   localStorage.setItem("score", score);
